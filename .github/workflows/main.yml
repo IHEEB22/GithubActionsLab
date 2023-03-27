@@ -17,13 +17,14 @@ jobs:
   test:
     runs-on: windows-latest    
     env:
-     env_for_specific_job: env for the test job
+     ENV_FOR_SPECIFIC_JOB: env for the test job
     steps:
     - name: run simple command on runer
       run: pwd
+
         
-    - name: print env variable
-      run: ls 
+    - name: print env variable for this job
+      run: echo "env is ${{env.ENV_FOR_SPECIFIC_JOB}}"
   
   deploy_using_env:
     runs-on: ubuntu-18.04
