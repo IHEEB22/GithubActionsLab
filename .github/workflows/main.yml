@@ -11,24 +11,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16.x'
+  test:
+    runs-on: windowswindows-latest
+    steps:
+    - name: run simple command on runer
+      run : pwd
 
-
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Install dependencies
-      run: npm install &&  npm update
-
-    - name: Build app
-      run: npm run build --if-present
-
-    - name: Run tests
-      run: npm test
-    # - name: Publish package
-    #   env:
-    #     NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-      # run: npm publish
+  push_container:
+    runs-on: macos-latest
+    steps:
+    - name: push to dockerHub 
+      run: echo "hello macos"
+    needs: [build, test]
