@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: print envirement variables
         run: | 
-         echo  "testenv = ${{ env.testvar }}""
+         echo  "testenv  ${{ env.testvar }}"
          echo  "DAY_OF_WEEK = $DAY_OF_WEEK"
 
   push_container:
