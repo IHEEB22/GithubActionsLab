@@ -1,4 +1,4 @@
-name: workflow 1
+name: Github Envirement Variable 
 
 on:
   push:
