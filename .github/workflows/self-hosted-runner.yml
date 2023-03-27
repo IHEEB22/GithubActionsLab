@@ -6,8 +6,8 @@ on:
       
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: self-hosted  
     
     steps:
-      - name: print from the self hosted runner  
+      - name: assigne a job to an self hosted runner  
         run: echo "hello from Standard_b1s azure vm"
