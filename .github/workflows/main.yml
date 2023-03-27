@@ -1,15 +1,26 @@
-name: Build and Test
-on: [push, pull_request]
+name: Build and Publish NPM Package
+
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Build code
-        run: |
-          echo "npm install"
-          echo "npm run build hello"
-      - name: Test code
-        run: echo "npm test"
+    - uses: actions/checkout@v2
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.x'
+    - name: Install dependencies
+      run: npm install
+    - name: Build app
+      run: npm run build --if-present
+    - name: Run tests
+      run: npm test
+    # - name: Publish package
+    #   env:
+    #     NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      # run: npm publish
