@@ -6,7 +6,7 @@ on:
       
 jobs:
   deploy:
-    runs-on: [self-hosted , Linux X64 , X64 , ansible]
+    runs-on: [self-hosted , Linux , X64 , ansible]
     
     steps:
       - name: print from the self hosted runner  
