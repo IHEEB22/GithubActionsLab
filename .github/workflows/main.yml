@@ -35,9 +35,11 @@ jobs:
          echo  "DAY_OF_WEEK = $DAY_OF_WEEK"
       
       - name: write an env variable
+        id: step_one
         run: echo "action_stat=yello" >> $GITHUB_EN
 
       - name: read the env varibale 
+        id: step_two
         run: echo "$env.action_stat"
   
   push_container:
