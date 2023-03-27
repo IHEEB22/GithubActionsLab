@@ -10,6 +10,6 @@ jobs:
       - name: Build code
         run: |
           npm install
-          npm run build
+          npm run build hello
       - name: Test code
         run: npm test
