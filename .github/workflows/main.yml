@@ -1,9 +1,12 @@
-name: Build and Publish NPM Package
+name: workflow 1
 
 on:
   push:
     branches:
       - main
+env:
+  DAY_OF_WEEK: monday
+  testenv: value-1
 
 jobs:
   build:
@@ -15,11 +18,27 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: run simple command on runer
-      run : pwd
-
+      run: pwd
+        
+    - name: print env variable
+      run: ls 
+  
+  deploy_using_env:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: print envirement variables
+        run: | 
+         echo  "testenv = ${{ env.testvar }}""
+         echo  "DAY_OF_WEEK = $DAY_OF_WEEK"
   push_container:
     runs-on: macos-latest
     steps:
+    - name: run ls command on macos
+      run: ls
+    
     - name: push to dockerHub 
       run: echo "hello macos"
     needs: [build, test]
+
+  
+      
