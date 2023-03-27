@@ -33,7 +33,13 @@ jobs:
         run: | 
          echo  "testenv  ${{ env.testvar }}"
          echo  "DAY_OF_WEEK = $DAY_OF_WEEK"
+      
+      - name: write an env variable
+        run: echo "yello" >> $GITHUB_EN
 
+      - name: read the env varibale 
+        run: echo "$env.GITHUB_EN"
+  
   push_container:
     runs-on: macos-latest
     steps:
