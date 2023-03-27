@@ -26,21 +26,11 @@ jobs:
     - name: print env variable for this job
       run: echo "this is an ${{env.ENV_FOR_SPECIFIC_JOB}}"
   
-  deploy_using_env:
+  deploy:
     runs-on: ubuntu-18.04
     steps:
       - name: print envirement variables
-        run: | 
-         echo  "testenv  ${{ env.testvar }}"
-         echo  "DAY_OF_WEEK = $DAY_OF_WEEK"
-      
-      - name: write an env variable
-        id: step_one
-        run: echo "action_stat=yello" >> $GITHUB_EN
-
-      - name: read the env varibale 
-        id: step_two
-        run: echo "$env.action_stat"
+        run: env
   
   push_container:
     runs-on: macos-latest
