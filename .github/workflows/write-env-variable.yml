@@ -1,4 +1,4 @@
-name: Github Environment 
+name: Add environment variable and print it 
 on: 
   push:
     branches:
@@ -11,7 +11,7 @@ jobs:
     
     steps:
       - name: add an env to github envirement variable 
-        run: echo  "env1:test" >> "$GITHUB_ENV"
+        run: echo  "env1=test" >> "$GITHUB_ENV"
       
       - name: print env1
         run: echo  ${{env.env1}}
