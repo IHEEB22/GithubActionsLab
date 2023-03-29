@@ -1,0 +1,32 @@
+name: Azure Container Registry
+
+on:
+  push:
+    branches:
+      - main
+    workflow_dispatch:
+
+env:
+  IMAGE_NAME: node-app
+  REGISTRY: noderegistryiheb.azurecr.io
+  DOCKERFILE_PATH: .
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Login to Azure Container Registry
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ env.REGISTRY }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: Build Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ${{ env.DOCKERFILE_PATH }}/Dockerfile
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
