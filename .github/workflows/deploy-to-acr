@@ -2,9 +2,10 @@ name: Azure Container Registry
 
 on:
   push:
-    branches:
-      - main
-    workflow_dispatch:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:  
 
 env:
   IMAGE_NAME: node-app
